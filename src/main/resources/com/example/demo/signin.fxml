@@ -35,7 +35,7 @@
                   <PasswordField fx:id="passwordField" prefHeight="31.0" prefWidth="250.0" promptText="Password" />
                   <Pane prefHeight="36.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="signInButton" layoutY="4.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" text="Sign in">
+                        <Button fx:id="signInButton" layoutY="4.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" text="Sign in" onAction="#onSignInButtonClick">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
