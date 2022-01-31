@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/** Контроллер для окна редактирования столов */
+//TODO вместо текстового редактора сделать графический и добавить возможность свободного таскания предметов в модуле админа
 public class TableEditorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

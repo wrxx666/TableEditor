@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+/** Контроллер для логина, много чего нужно доделывать
+ *
+ *  Надо замутить базу и отдельный
+ *  админский модуль для создания пользователей
+ */
 public class SignInController {
 
 
@@ -20,7 +26,7 @@ public class SignInController {
         private TextField loginField;
 
         @FXML
-        private PasswordField passwordField;
+        private PasswordField passwordField; //TODO прикрутить базу с паролелогинами
 
         @FXML
         private Button signInButton;
