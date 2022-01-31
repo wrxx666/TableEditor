@@ -32,6 +32,8 @@ public class MainMenuController {
     private ResourceBundle resources;
 
     private HashMap<String,String> filesOfTableList;
+    private String sourceToOpen;
+    private Image opener;
 
     @FXML
     private URL location;
@@ -40,7 +42,7 @@ public class MainMenuController {
     private Button deleteTableBtn;
 
     @FXML
-    private Button dwnldTableBtn;
+    private Button editTableBtn;
 
     @FXML
     private ListView tablesList;
@@ -57,7 +59,7 @@ public class MainMenuController {
     @FXML
     void initialize() {
         assert deleteTableBtn != null : "fx:id=\"deleteTableBtn\" was not injected: check your FXML file 'mainMenu.fxml'.";
-        assert dwnldTableBtn != null : "fx:id=\"dwnldTableBtn\" was not injected: check your FXML file 'mainMenu.fxml'.";
+        assert editTableBtn != null : "fx:id=\"dwnldTableBtn\" was not injected: check your FXML file 'mainMenu.fxml'.";
         assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'mainMenu.fxml'.";
         assert loadTableBtn != null : "fx:id=\"loadTableBtn\" was not injected: check your FXML file 'mainMenu.fxml'.";
         assert tableMapView != null : "fx:id=\"tableMapView\" was not injected: check your FXML file 'mainMenu.fxml'.";
@@ -79,14 +81,20 @@ public class MainMenuController {
     }
     public void onLoadTableBtnClick() throws MalformedURLException {
         tablesList.refresh();
-        String s = tablesList.getSelectionModel().getSelectedItems().toString();
-        StringBuilder sb = new StringBuilder(s);
+        sourceToOpen = tablesList.getSelectionModel().getSelectedItems().toString();
+        StringBuilder sb = new StringBuilder(sourceToOpen);
         sb.deleteCharAt(0);
         sb.deleteCharAt(sb.length()-1);
-        s = sb.toString();
-        System.out.println(s);
-        System.out.println(filesOfTableList.get(s));
-        Path imageFile = Paths.get(filesOfTableList.get(s));
-        tableMapView.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
+        sourceToOpen = sb.toString();
+        Path imageFile = Paths.get(filesOfTableList.get(sourceToOpen));
+        opener = new Image(imageFile.toUri().toURL().toExternalForm());
+        tableMapView.setImage(opener);
+    }
+
+    public void onEditButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("editMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 876, 451);
+        Stage pr = (Stage) editTableBtn.getScene().getWindow();
+        pr.setScene(scene);
     }
 }

@@ -20,9 +20,9 @@
             </ImageView>
             <ToolBar layoutX="171.0" layoutY="410.0" prefHeight="40.0" prefWidth="698.0">
               <items>
-                <Button fx:id="loadTableBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Load Table" onAction="#onLoadTableBtnClick"/>
+                <Button fx:id="loadTableBtn" mnemonicParsing="false" onAction="#onLoadTableBtnClick" prefHeight="25.0" prefWidth="146.0" text="Load Table" />
                   <Button fx:id="deleteTableBtn" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" text="Delete Table" />
-                  <Button fx:id="dwnldTableBtn" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" text="Download Table" />
+                  <Button fx:id="editTableBtn" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" text="Edit Table" onAction="#onEditButtonClick" />
                   <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#onExitBtnClick" prefHeight="25.0" prefWidth="177.0" text="Exit" />
               </items>
             </ToolBar>
