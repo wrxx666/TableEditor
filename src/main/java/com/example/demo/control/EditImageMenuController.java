@@ -8,19 +8,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class EditImageMenuController {
     @FXML
     private Button exitMenuBtn;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
     @FXML
     void initialize() {
         assert exitMenuBtn != null : "fx:id=\"exitMenuBtn\" was not injected: check your FXML file 'editImageMenu.fxml'.";
