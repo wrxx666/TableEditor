@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.control;
 /**
  * Класс контроллер для главного меню,
  * где осуществляется выбор и работа с имеющимися файлами
@@ -12,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import com.example.demo.TableEditorApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,23 +85,26 @@ public class MainMenuController {
         Stage pr = (Stage) exitBtn.getScene().getWindow();
         pr.setScene(scene);
     }
-    /** Отвечает за открытие предпросмотра выбранного из списка стола по кнопке Load*/
+
+
+
+    /** Отвечает за открытие предпросмотра выбранного из списка стола по кнопке Load*/   //TODO Если из списка слева ничего не выбрано, то кидает исключение, надо обработать
     public void onLoadTableBtnClick() throws MalformedURLException {
         tablesList.refresh();
         sourceToOpen = tablesList.getSelectionModel().getSelectedItems().toString();
         StringBuilder sb = new StringBuilder(sourceToOpen);              //TODO Аналогично тудухе выше, понять какого черта оно работает и сделать по-человечески
         sb.deleteCharAt(0);
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         sourceToOpen = sb.toString();
         Path imageFile = Paths.get(filesOfTableList.get(sourceToOpen));
         opener = new Image(imageFile.toUri().toURL().toExternalForm());
         tableMapView.setImage(opener);
     }
 
-    /** Открывает окошко редактирования стола, в будущем должен научиться передавать параметром Image объект стола*/
-    public void onEditButtonClick() throws IOException {   //TODO Как и выше, черт знает как оно заработало
-        FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("editMenu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 876, 451);
+    /** Открывает окошко редактирования стола, в будущем должен научиться передавать параметром Image объект стола*/ //TODO Как и выше, черт знает как оно заработало
+    public void onEditButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("editImageMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 464);
         Stage pr = (Stage) editTableBtn.getScene().getWindow();
         pr.setScene(scene);
     }
