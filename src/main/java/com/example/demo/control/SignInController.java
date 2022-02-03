@@ -36,7 +36,7 @@ public class SignInController {
                 FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("mainMenu.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 876, 451);
                 Stage pr = (Stage) signInButton.getScene().getWindow();
-                pr.setScene(scene);
+                pr.setScene(scene); //TODO Есть нюанс по переключению окон/сцен, в последующих классах эти моменты отмечены как (TODO SCENE)
         }
 
 }

@@ -20,7 +20,7 @@ public class EditImageMenuController {
     public void onExitMenuBtnClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("mainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 876, 451);
-        Stage pr = (Stage) exitMenuBtn.getScene().getWindow();
+        Stage pr = (Stage) exitMenuBtn.getScene().getWindow();  //TODO (TODO SCENE)
         pr.setScene(scene);
     }
 }
