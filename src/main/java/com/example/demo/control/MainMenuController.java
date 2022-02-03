@@ -67,7 +67,7 @@ public class MainMenuController {
     public void onExitBtnClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("signin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 250);
-        Stage pr = (Stage) exitBtn.getScene().getWindow();
+        Stage pr = (Stage) exitBtn.getScene().getWindow(); //TODO (TODO SCENE)
         pr.setScene(scene);
     }
 
@@ -90,7 +90,7 @@ public class MainMenuController {
     public void onEditButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("editImageMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 464);
-        Stage pr = (Stage) editTableBtn.getScene().getWindow();
+        Stage pr = (Stage) editTableBtn.getScene().getWindow();   //TODO (TODO SCENE)
         pr.setScene(scene);
     }
 }
