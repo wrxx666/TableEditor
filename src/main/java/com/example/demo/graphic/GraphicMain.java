@@ -1,7 +1,5 @@
 package com.example.demo.graphic;
 
-import javafx.util.Pair;
-
 import java.util.Scanner;
 
 /**
@@ -19,15 +17,14 @@ public class GraphicMain {
 
     }
 
-    public static void objectMove(HallPlan firstFloor, Table table) throws InterruptedException {
+    public static void objectMove(HallPlan firstFloor, Table table){
         Scanner se = new Scanner(System.in);
         String sss = "w";
         while (!sss.equals("e")) {
             for (int j = 1; j < firstFloor.width - table.width; j++) {
                 firstFloor.addObject(table, j, 1);
                 firstFloor.printHallPlan();
-                //Thread.sleep(100);
-                //firstFloor.removeObject(table, j, 1);
+                firstFloor.removeObject(table, j, 1);
                 //for (int i = 0; i < 40; i++) {
                 //    System.out.println();
                 //}
@@ -36,7 +33,6 @@ public class GraphicMain {
             for (int j = firstFloor.width - table.width; j > 1; j--) {
                 firstFloor.addObject(table, j, 1);
                 firstFloor.printHallPlan();
-                //Thread.sleep(100);
                 firstFloor.removeObject(table, j, 1);
                 //for (int i = 0; i < 40; i++) {
                 //    System.out.println();
