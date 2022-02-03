@@ -36,15 +36,7 @@ public class HallPlan {
     }
 
     /**
-     * Метод для добавления объекта на поле,
-     * 03.02 Всё грустно, много костылей,
-     * заводит объект на поле некорректно
-     * ищем причину
-     * вероятно сменится на что-нибудь иное
-     *
-     * общий смысл в том, что по массиву
-     * объектов с координатами, метод должен понимать
-     * где расположить объект на поле
+     * Метод для добавления объекта на поле
      */
     public boolean addObject(HallObject hallObject, int xStartPos, int yStartPos){
         int xStartPos0 = xStartPos;
@@ -55,8 +47,10 @@ public class HallPlan {
         int yEndPoint = yStartPos0+objH-1;
         boolean stop = false;
         int hallObjectCellNum = 0;
+
         //System.out.println(hallObject.height);
         //System.out.println(hallObject.width);
+
         for(int j = 0,s=0; j < this.height; j++){
             for (int i = 0; i < this.width; i++,s++){
                 if(this.cells[s].x == xStartPos && this.cells[s].y == yStartPos){
@@ -90,79 +84,12 @@ public class HallPlan {
         }
         hallObjectHashMap.put(hallObject.ID,hallObject);
 
-
-        /*
-        for(int j = 0,s=0; j < this.height; j++) {
-            for (int i = 0; i < this.width; i++, s++) {
-                if (this.cells[s].x == xStartPos && this.cells[s].y == yStartPos) {
-                    this.cells[s].isEmpty = 0;
-                    yStartPos++;
-                    hallObject.height--;
-                    if (hallObject.width == 0) {
-                        yStartPos = yStartPos0;
-                    }
-                }
-                if (s == this.cells.length - 1) {
-                    break;
-                }
-            }
-
-        }
-
-         */
-
-        /*
-        for(int j = 0, s = (xStartPos*yStartPos)-1; j < height; j++){
-           //System.out.println(s);
-
-           for(int i = 0; i < width; i++, s++){
-               if(s==99){
-                   break;
-               }
-               if(j >= yStartPos && i >= xStartPos){
-                   cells[s].isEmpty = 0;//false;
-               }
-           }
-
-
-       }
-
-         */
-
-        /* for(int j = yStartPos-1, s = (xStartPos*yStartPos)-1; j < height;j++){
-            for(int i = xStartPos-1 ; i < width;i++,s++){
-                cells[s].isEmpty = 0;//false;
-            }
-        }
-
-        for(int j = yStartPos-1, s = 0; j < height;j++){
-            for(int i = xStartPos-1 ; i < width;i++,s++){
-
-                if(s == height - 1){
-                    break;
-                } else {
-                    hallObject.objectCells[s].x = i;
-                    hallObject.objectCells[s].y = j;
-                }
-            }
-        }
-
-
-
-        for(int j = 0, s = 0; j < width; j++){
-            for( int i = 0; i < height; i++, s++){
-                System.out.print(cells[s].isEmpty);
-                System.out.print(" ");
-            }
-            System.out.println();
-        }
-
-         */
         return false;
 
 
 
     }
+
 
     /**
      * Метод для отображения зала и объёктов в нем таблицей
@@ -170,12 +97,12 @@ public class HallPlan {
     public void printHallPlan(){
         for(int j = 0, s = 0; j < width; j++){
             for( int i = 0; i < height; i++, s++){
-                String str = "_";
+                String str = " ";
                 //System.out.print(cells[s].isEmpty);
                // System.out.print(this.cells[s].x + "." + this.cells[s].y + "(" + this.cells[s].isEmpty + ")" );
                 //System.out.print("(" + this.cells[s].isEmpty + ")" );
                 if(this.cells[s].isEmpty==0){
-                    str = "#";
+                    str = "@";
                 }
                 System.out.print(str);
                 System.out.print(" ");
@@ -184,7 +111,7 @@ public class HallPlan {
         }
     }
 
-
+    /**НЕДОСТУПНО Метод для перемещения объекта влево путем сдвига по ячейке*/
     public void moveObjectLeft(int objectID){  //TODO Научить объекты ползать по залу, пригодится для того чтобы прикрутить "таскание объектов"
         HallObject obj = hallObjectHashMap.get(objectID);
         for(int j = 0,s = 0; j < height; j++){
@@ -195,14 +122,58 @@ public class HallPlan {
             }
         }
     }
+
+    /**НЕДОСТУПНО Метод для перемещения объекта вправо путем сдвига по ячейке*/
     public void moveObjectRight(int objectID){
         HallObject obj = hallObjectHashMap.get(objectID);
         System.out.println(objectID);
-        //for (Cell c : obj.objectCells){
-        //    c.x++;
-        //}
-        for (Cell c : cells){
-            c.x++;
+
+        for (HallCell c : cells){
+            if(c.cellOwner==hallObjectHashMap.get(objectID)){
+
+            }
+        }
+    }
+
+    /** Метод для удаления объекта с поля */
+    public void removeObject(HallObject hallObject, int xStartPos, int yStartPos){
+        int xStartPos0 = xStartPos;
+        int yStartPos0 = yStartPos;
+        int objH = hallObject.height;
+        int objW = hallObject.width;
+        int xEndPoint = xStartPos0+objW-1;
+        int yEndPoint = yStartPos0+objH-1;
+        int hallObjectCellNum = 0;
+
+        for(int j = 0,s=0; j < this.height; j++){
+            for (int i = 0; i < this.width; i++,s++){
+                if(this.cells[s].x == xStartPos && this.cells[s].y == yStartPos){
+                    this.cells[s].isEmpty=1;
+                    this.cells[s].cellOwner = null;
+                    hallObject.objectCells[hallObjectCellNum].x=this.cells[s].x;
+                    hallObject.objectCells[hallObjectCellNum].y=this.cells[s].y;
+                    xStartPos++;
+                    hallObjectCellNum++;
+                }
+
+                if(xStartPos > xEndPoint){
+                    xStartPos = xStartPos0;
+
+                }
+
+
+                if(s==this.cells.length-1){
+                    break;
+                }
+            }
+            if(yStartPos <= j+1 && j+1< yEndPoint ){
+                yStartPos++;
+            }
+            if(yStartPos > yEndPoint){
+                yStartPos = yStartPos0;
+                break;
+            }
+
         }
     }
 }
