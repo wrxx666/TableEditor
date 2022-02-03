@@ -1,12 +1,12 @@
-package com.example.demo;
+package com.example.demo.control;
 
+import com.example.demo.TableEditorApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,15 +31,12 @@ public class SignInController {
         @FXML
         private Button signInButton;
 
-        @FXML
-        private ImageView tableEditorImage;
-
         public void onSignInButtonClick() throws IOException {
                 loginField.appendText("LOLOLOLOLOLOL");
                 FXMLLoader fxmlLoader = new FXMLLoader(TableEditorApplication.class.getResource("mainMenu.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 876, 451);
                 Stage pr = (Stage) signInButton.getScene().getWindow();
-                pr.setScene(scene);
+                pr.setScene(scene); //TODO Есть нюанс по переключению окон/сцен, в последующих классах эти моменты отмечены как (TODO SCENE)
         }
 
 }
