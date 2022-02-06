@@ -6,6 +6,7 @@ import java.util.HashMap;
  * Класс зала
  * описывает в себе двумерное пространство, задаваемых размеров
  * на 03.02 находится в плачевном состоянии
+ * на 06.02 состояние получше, но я уже черт знает что тут происходит
  */
 public class HallPlan {
     int width;
@@ -28,7 +29,7 @@ public class HallPlan {
                     //System.out.print(cells[s].x+".");
                     cells[s].y = j+1;
                     //System.out.print(cells[s].y+" ");
-                    cells[s].isEmpty = 1;//true;
+                    cells[s].isEmpty = true;
                 }
             //System.out.println();
         }
@@ -54,7 +55,7 @@ public class HallPlan {
         for(int j = 0,s=0; j < this.height; j++){
             for (int i = 0; i < this.width; i++,s++){
                 if(this.cells[s].x == xStartPos && this.cells[s].y == yStartPos){
-                    this.cells[s].isEmpty=0;
+                    this.cells[s].isEmpty=false;
                     this.cells[s].cellOwner = hallObject;
                     hallObject.objectCells[hallObjectCellNum].x=this.cells[s].x;
                     hallObject.objectCells[hallObjectCellNum].y=this.cells[s].y;
@@ -101,7 +102,7 @@ public class HallPlan {
                 //System.out.print(cells[s].isEmpty);
                // System.out.print(this.cells[s].x + "." + this.cells[s].y + "(" + this.cells[s].isEmpty + ")" );
                 //System.out.print("(" + this.cells[s].isEmpty + ")" );
-                if(this.cells[s].isEmpty==0){
+                if(!this.cells[s].isEmpty){
                     str = "@";
                 }
                 System.out.print(str);
@@ -148,7 +149,7 @@ public class HallPlan {
         for(int j = 0,s=0; j < this.height; j++){
             for (int i = 0; i < this.width; i++,s++){
                 if(this.cells[s].x == xStartPos && this.cells[s].y == yStartPos){
-                    this.cells[s].isEmpty=1;
+                    this.cells[s].isEmpty=true;
                     this.cells[s].cellOwner = null;
                     hallObject.objectCells[hallObjectCellNum].x=this.cells[s].x;
                     hallObject.objectCells[hallObjectCellNum].y=this.cells[s].y;
@@ -175,5 +176,6 @@ public class HallPlan {
             }
 
         }
-    }
+        //TODO Переписать метод удаления основываясь на принадлежности клетки к объекту
+    }   //TODO Добавить удаление из HashMap
 }

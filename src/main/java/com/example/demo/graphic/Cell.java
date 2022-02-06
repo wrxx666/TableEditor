@@ -6,10 +6,10 @@ package com.example.demo.graphic;
 public class Cell {
     int x;
     int y;
-    HallObject cellOwner; // По идее должно быть показателем принадлежности клетки к определённому объекту
+    HallObject cellOwner; // TODO Реализовать привязку к объектам, для простоты перемещения/удаления объекта с поля
 }
 class HallCell extends Cell{
     //boolean isEmpty;
-    int isEmpty = 0;
+    boolean isEmpty = true;
 
 }
