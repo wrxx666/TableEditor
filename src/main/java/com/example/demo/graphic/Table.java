@@ -7,6 +7,7 @@ package com.example.demo.graphic;
 public class Table extends HallObject{
         int ID = 1;
     boolean freeForGuest;
+    boolean moveable = true;
 
 
 

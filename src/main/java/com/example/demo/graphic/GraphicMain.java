@@ -12,7 +12,6 @@ public class GraphicMain {
         Table table = new Table(25, 100, true);
         Table table2 = new Table(15, 20, true);
 
-
         //objectMove(firstFloor, table); /** Словно маятник ползает по полю слева направо и обратно, на слабом пк лучше не проверять*/
 
     }

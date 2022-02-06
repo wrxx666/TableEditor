@@ -13,6 +13,7 @@ public abstract class HallObject {
     boolean isBusy;
     int xStartPos;
     int yStartPos;
+    boolean moveable;
 
     public void delete(){
 
